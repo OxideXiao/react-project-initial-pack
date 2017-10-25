@@ -1,0 +1,9 @@
+# dependencies
+/node_modules
+
+# production
+
+
+# misc
+npm-debug.log*
+.idea
