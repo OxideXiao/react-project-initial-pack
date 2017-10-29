@@ -4,7 +4,8 @@
   "description": "for my react project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devServer": "webpack-dev-server --inline"
   },
   "repository": {
     "type": "git",
@@ -20,13 +21,16 @@
   },
   "homepage": "https://github.com/OxideXiao/react-project-initial-pack#readme",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.2.0",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
-    "redux-thunk": "^2.2.0"
+    "immutable": "^3.8.2",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-redux": "4.4.5",
+    "react-router": "3.0.0",
+    "react-router-redux": "4.0.5",
+    "redux": "3.5.2",
+    "redux-saga": "^0.14.3",
+    "redux-thunk": "^2.1.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
@@ -55,6 +59,7 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.9.3",
     "webpack-hot-middleware": "^2.20.0"
   }
 }

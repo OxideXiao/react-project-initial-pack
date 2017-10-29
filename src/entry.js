@@ -1,11 +1,10 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 
-import Home from './containers/home.jsx';
+import App from './containers/routes';
 
 render(
-  <Home />,
+  <App />,
   document.getElementById('react-app')
 );

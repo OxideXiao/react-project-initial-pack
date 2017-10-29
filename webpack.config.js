@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const devServer = require("webpack-dev-server");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
@@ -39,7 +40,7 @@ module.exports = function(env){
           use: {
             loader: "babel-loader",
             options: {
-              presets: ['es2015', 'react'],
+              presets: ['es2015', 'react', 'stage-0'],
             }
           },
           exclude: /node_modules/
@@ -48,17 +49,18 @@ module.exports = function(env){
       loaders: [{
         test: /\.(png|jpg)$/,
         loader: 'url?limit=8192'
-      }, {
-        test: /\.tpl$/,
-        loader: 'html'
-      }, {
-        test: /\.json$/,
-        loader: 'json'
-      }]
+      }],
     },
     plugins: [
       extractCSS,
-      extractLESS
-    ]
+      extractLESS,
+    ],
+    // devServer: {
+    //   historyApiFallback: true,
+    //   inline: true,
+    //   contentBase: path.join(__dirname, "public"),
+    //   compress: true,
+    //   port: 9000
+    // }
   }
 }
