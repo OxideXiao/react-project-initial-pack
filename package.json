@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/OxideXiao/react-project-initial-pack#readme",
   "dependencies": {
+    "antd": "^2.13.8",
     "immutable": "^3.8.2",
     "react": "15.3.0",
     "react-dom": "15.3.0",
@@ -53,6 +54,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "moment": "^2.19.1",
+    "postcss-loader": "^0.11.0",
     "redux-devtools": "^3.4.0",
     "redux-immutable-state-invariant": "^2.1.0",
     "uglifyjs-webpack-plugin": "^1.0.1",

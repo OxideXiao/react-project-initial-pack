@@ -1,13 +1,43 @@
 const path = require("path");
 const webpack = require("webpack");
 const devServer = require("webpack-dev-server");
+const UglifyJS = require("uglifyjs-webpack-plugin");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const extractCSS = new ExtractTextPlugin('stylesheets/[name].min.css', {allChunks: true});
-const extractLESS = new ExtractTextPlugin('stylesheets/[name].css', {allChunks: true});
+const extractCSS = new ExtractTextPlugin('stylesheets/[name].css', {allChunks: true});
+const extractLESS = new ExtractTextPlugin('stylesheets/[name].min.css', {allChunks: true});
 // 导入配置文件
 //const config = require("./config");
 //const publicPath = config.publicPath;
+
+const env = 'daliy';  // production
+
+defaultPlugin = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify(env),
+    }
+  }),
+  extractCSS,
+  extractLESS,
+];
+if (env === 'production') {
+  const Uglify = new UglifyJS({
+    uglifyOptions: {
+      compress: {
+        warnings: false,
+        comparisons: false,
+        drop_console: false,
+      },
+      output: {
+        comments: false,
+        ascii_only: false,
+      },
+      sourceMap: true,
+    }
+  });
+  defaultPlugin.push(Uglify);
+}
 
 module.exports = function(env){
   return{
@@ -51,10 +81,7 @@ module.exports = function(env){
         loader: 'url?limit=8192'
       }],
     },
-    plugins: [
-      extractCSS,
-      extractLESS,
-    ],
+    plugins: defaultPlugin,
     // devServer: {
     //   historyApiFallback: true,
     //   inline: true,

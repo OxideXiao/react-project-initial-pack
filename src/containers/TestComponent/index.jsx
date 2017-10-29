@@ -6,6 +6,7 @@ import { createSelector } from 'reselect';
 import { Link } from 'react-router'
 
 // component
+import { Input } from 'antd';
 
 // actions
 import { testActionRequest } from '../../actions/testAction'
@@ -31,7 +32,10 @@ class SimpleComponent extends React.Component {
 
   render() {
     return (
-      <div className="test">simpleComponent</div>
+      <div className="test">
+        simpleComponent
+        <Input />
+      </div>
     )
   }
 }
