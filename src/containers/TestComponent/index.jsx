@@ -16,6 +16,7 @@ import { testActionRequest } from '../../actions/testAction'
 import { testAdapter } from '../../utils/adaptors/testComponent';
 
 // styles
+import './index.less';
 
 class SimpleComponent extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class SimpleComponent extends React.Component {
 
   render() {
     return (
-      <div>simpleComponent</div>
+      <div className="test">simpleComponent</div>
     )
   }
 }

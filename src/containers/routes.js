@@ -3,7 +3,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import Home from './Home.jsx';
 
-import TestComponent from './TestComponent/index.jsx';
+import TestComponent from './TestComponent';
 
 export default class App extends React.Component {
   render() {

@@ -3,8 +3,8 @@ const webpack = require("webpack");
 const devServer = require("webpack-dev-server");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
-const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+const extractCSS = new ExtractTextPlugin('stylesheets/[name].min.css', {allChunks: true});
+const extractLESS = new ExtractTextPlugin('stylesheets/[name].css', {allChunks: true});
 // 导入配置文件
 //const config = require("./config");
 //const publicPath = config.publicPath;
@@ -13,16 +13,16 @@ module.exports = function(env){
   return{
     // 入口文件：src目录下的 main.js
     entry:{
-      main: './src/entry.js'//path.resolve(__dirname,"../src/entry.js"),
+      'main': './src/entry.js'//path.resolve(__dirname,"../src/entry.js"),
     },
     // 输出配置
     output: {
       path: path.resolve(__dirname,"dist/webpack"),
-      filename: "output.js",
+      filename: "[name].js",
       publicPath: '/dist/webpack'
     },
     resolve: {
-      extensions: [".js", ".json", ".less"],
+      extensions: ['.js', '.jsx'],
       modules: ["node_modules"]
     },
     module: {

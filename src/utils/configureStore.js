@@ -8,7 +8,6 @@ export default function configureStore(initialState) {
   return (rootReducer) => {
     const finalCreateStore = compose(
       applyMiddleware(
-        thunkMiddleware,
         sagaMiddleware,
       ),
       window.devToolsExtension ? window.devToolsExtension() : f => f

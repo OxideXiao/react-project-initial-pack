@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
 // store
-import configureStore from '../configureStore';
+import configureStore from '../utils/configureStore';
 
 // reducer
 import { mainReducer } from '../reducers/main';
