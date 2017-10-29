@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const devServer = require("webpack-dev-server");
 const UglifyJS = require("uglifyjs-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractCSS = new ExtractTextPlugin('stylesheets/[name].css', {allChunks: true});
@@ -20,6 +21,11 @@ defaultPlugin = [
   }),
   extractCSS,
   extractLESS,
+  new HtmlWebpackPlugin({
+    template: path.join(__dirname, "src/index.html"),
+    inject: true,
+  }),
+  new webpack.HotModuleReplacementPlugin(),
 ];
 if (env === 'production') {
   const Uglify = new UglifyJS({
@@ -41,6 +47,7 @@ if (env === 'production') {
 
 module.exports = function(env){
   return{
+    devtool: 'source-map',  // todo dev
     // 入口文件：src目录下的 main.js
     entry:{
       'main': './src/entry.js'//path.resolve(__dirname,"../src/entry.js"),
@@ -49,7 +56,7 @@ module.exports = function(env){
     output: {
       path: path.resolve(__dirname,"dist/webpack"),
       filename: "[name].js",
-      publicPath: '/dist/webpack'
+      publicPath: ''
     },
     resolve: {
       extensions: ['.js', '.jsx'],
@@ -74,6 +81,12 @@ module.exports = function(env){
             }
           },
           exclude: /node_modules/
+        },
+        {
+          test: /\.(html)$/,
+          use: {
+            loader: 'html-loader',
+          }
         }
       ],
       loaders: [{
@@ -82,12 +95,13 @@ module.exports = function(env){
       }],
     },
     plugins: defaultPlugin,
-    // devServer: {
-    //   historyApiFallback: true,
-    //   inline: true,
-    //   contentBase: path.join(__dirname, "public"),
-    //   compress: true,
-    //   port: 9000
-    // }
+    devServer: {
+      historyApiFallback: true,  // todo 后端支持
+      inline: true,
+      contentBase: path.join(__dirname, "dist/webpack"),
+      hot: true,
+      port: 8081,
+      compress: false,
+    }
   }
-}
+};

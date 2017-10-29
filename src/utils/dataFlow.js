@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
  * Action生成的语法糖
  * @param type        ［action种类］
@@ -19,3 +21,25 @@ export const createActionTypes = base =>
     actions[type] = `FETCH_${base}_${type}`;
     return actions;
   }, {});
+
+export const fetch = (api, data, opts = {}, errorMessage = '', showMessage = true) => {
+  // todo 错误处理
+  const p = new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: `${api}`,
+      params: {
+        ...data,
+      },
+    }).then(
+      (response) => {
+        return resolve('is resolved');
+      },
+      (error) => {
+        return reject('is rejected');
+      }
+    );
+  });
+  return p;
+};
+

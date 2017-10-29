@@ -8,15 +8,14 @@ import {
 } from '../../actions/testAction';
 
 // util
+import { fetch } from '../../utils/dataFlow';
 
 /**
  * ***************** workers **************
  */
 function* getTestData({ type, ...payload }) {
   try {
-    const response = yield call((url, payload) => {
-      console.log('fetching', url, payload);
-    }, 'www.test.com', {...payload});
+    const response = yield call(fetch, 'testApi', {...payload});
     yield put(testActionSolve(response));
   } catch (error) {
     yield put(testActionReject(error));
