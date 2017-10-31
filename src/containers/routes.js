@@ -9,8 +9,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Router history={browserHistory}>
-        <Route path="/" component={Home}>
-          <Route path="home" component={TestComponent}/>
+        <Route path="home" component={Home}>
+          <IndexRoute onEnter={() => browserHistory.push('home/test')}/>
+          <Route path="test" component={TestComponent}/>
         </Route>
       </Router>
     );

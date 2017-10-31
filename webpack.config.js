@@ -56,7 +56,7 @@ module.exports = function(env){
     output: {
       path: path.resolve(__dirname,"dist/webpack"),
       filename: "[name].js",
-      publicPath: ''
+      publicPath: '/'
     },
     resolve: {
       extensions: ['.js', '.jsx'],
